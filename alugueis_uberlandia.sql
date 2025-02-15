@@ -1,0 +1,54 @@
+CREATE DATABASE ALUGUEIS_UBERLANDIA;
+
+USE ALUGUEIS_UBERLANDIA;
+
+create table ALUGUEIS (
+	ID_ALUGUEL INT PRIMARY KEY,
+    BAIRRO VARCHAR(100),
+    PRECO DOUBLE
+    );
+
+
+
+#bairros com os alugueis mais caros
+SELECT 
+	BAIRRO,
+    PRECO
+FROM ALUGUEIS 
+ORDER BY PRECO DESC;
+
+#bairros com os alugueis mais baratos
+
+SELECT 
+	BAIRRO,
+    PRECO
+FROM ALUGUEIS 
+ORDER BY PRECO ASC;
+
+#bairros com mais alugueis
+SELECT
+	BAIRRO,
+    COUNT(BAIRRO) AS QUANTIDADE_DE_ALUGUEIS
+FROM ALUGUEIS
+GROUP BY BAIRRO
+ORDER BY QUANTIDADE_DE_ALUGUEIS DESC;
+
+#id do aluguel e bairro que estao acima da media.
+SELECT
+	ID_ALUGUEL,
+	BAIRRO,
+	PRECO
+FROM ALUGUEIS
+WHERE PRECO > (SELECT AVG(PRECO) FROM ALUGUEIS)
+ORDER BY PRECO DESC;
+
+#caso queira o valor da media
+SELECT AVG(PRECO) FROM ALUGUEIS
+
+    
+
+
+
+
+
+
